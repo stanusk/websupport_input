@@ -1,40 +1,30 @@
 <template>
     <div id="app">
-        <q-toggle v-model="required" label="Required" />
+        <input-testing-container title="Email: single | required">
+            <ws-email v-model="emailSingle"></ws-email>
+        </input-testing-container>
 
-        <q-option-group
-            :options="[
-                { label: 'Single', value: 'single' },
-                { label: 'Multiple', value: 'multiple' },
-            ]"
-            label="Notifications"
-            type="radio"
-            v-model="mode"
-            inline
-        />
+        <input-testing-container title="Email: single | optional">
+            <ws-email v-model="emailSingle" :required="false"></ws-email>
+        </input-testing-container>
 
-        <div class="container-component">
-            <ws-email
-                v-model="emails"
-                :required="required"
-                :mode="mode"
-            ></ws-email>
-        </div>
-        <p>email addresses string: {{ emails }}</p>
+        <input-testing-container title="Email: multiple | required">
+            <ws-email v-model="emailMultiple" mode="multiple"></ws-email>
+        </input-testing-container>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import WsEmail from '@/components/WsEmail.vue';
+import InputTestingContainer from '@/components/InputTestingContainer.vue';
 
 @Component({
-    components: { WsEmail },
+    components: { InputTestingContainer, WsEmail },
 })
 export default class App extends Vue {
-    emails = '';
-    mode = 'single';
-    required = false;
+    emailSingle = '';
+    emailMultiple = '';
 }
 </script>
 
