@@ -1,7 +1,8 @@
 <template>
     <div id="app">
+        <q-toggle v-model="required" label="Required" />
         <div class="container-component">
-            <ws-email v-model="emails"></ws-email>
+            <ws-email :required="required" v-model="emails"></ws-email>
         </div>
         <p>email addresses string: {{ emails }}</p>
     </div>
@@ -16,6 +17,7 @@ import WsEmail from '@/components/WsEmail.vue';
 })
 export default class App extends Vue {
     emails = '';
+    required = false;
 }
 </script>
 
