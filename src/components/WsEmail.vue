@@ -1,51 +1,39 @@
 <template>
-    <q-input
+    <ws-custom-input
         :value="value"
-        :rules="appendedRules"
         @input="onInput"
-        label="Emails (comma separated)"
-        outlined
-        square
-        autogrow
-        no-error-icon
-    >
-        <template v-if="!required" v-slot:append>
-            <i class="append-text">(Optional)</i>
-        </template>
-    </q-input>
+        :required="required"
+        :autogrow="mode !== 'single'"
+        :label="label"
+    ></ws-custom-input>
 </template>
 
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
+import WsCustomInput from '@/components/WsCustomInput.vue';
 
-@Component
+@Component({ components: { WsCustomInput } })
 export default class WsEmail extends Vue {
-    @Prop()
-    value = '';
+    @Prop({ default: 'single' })
+    mode!: 'single' | 'multiple';
 
-    @Prop({ default: false })
+    @Prop({ default: '' })
+    value!: string;
+
+    @Prop({ default: true })
     required!: boolean;
-
-    @Prop({ default: () => [] })
-    rules!: ((value: any) => true | string)[];
-
-    get appendedRules() {
-        // todo: localization
-        const ruleRequired = (val: string) => !!val || 'Field is required';
-        // todo: make adding rules more user-friendly
-        // todo: document adding rules
-        return [...(this.required ? [ruleRequired] : []), ...this.rules];
-    }
 
     @Emit('input')
     onInput(value: string) {
         return value;
     }
+
+    get label() {
+        const single = 'Email';
+        const multiple = 'Emails (comma separated)';
+        return this.mode === 'single' ? single : multiple;
+    }
 }
 </script>
 
-<style scoped lang="scss">
-.append-text {
-    font-size: 0.8rem;
-}
-</style>
+<style scoped lang="scss"></style>
