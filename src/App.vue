@@ -1,17 +1,21 @@
 <template>
     <div id="app">
-        <q-input v-model="text" label="Standard" />
+        <div class="container-component">
+            <ws-email v-model="emails"></ws-email>
+        </div>
+        <p>email addresses string: {{ emails }}</p>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import WsEmail from '@/components/WsEmail.vue';
 
 @Component({
-    components: {},
+    components: { WsEmail },
 })
 export default class App extends Vue {
-    text = '';
+    emails = '';
 }
 </script>
 
@@ -28,5 +32,9 @@ export default class App extends Vue {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
+    .container-component {
+        width: 300px;
+    }
 }
 </style>
