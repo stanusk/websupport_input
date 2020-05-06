@@ -1,6 +1,6 @@
 <template>
-    <div class="container-component">
-        <q-chip square outline size="md" class="q-my-sm q-mx-none">
+    <div class="container-component" :class="{ dark }">
+        <q-chip :dark="dark" square outline size="md" class="q-my-sm q-mx-none">
             <q-avatar :icon="icon" :text-color="color" />
             {{ title }}
         </q-chip>
@@ -24,7 +24,21 @@ export default class InputTestingContainer extends Vue {
 
     @Prop()
     title!: string;
+
+    @Prop({ default: false })
+    dark!: boolean;
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+@import 'src/styles/ws.variables';
+
+.container-component {
+    width: 300px;
+    padding: 5px;
+
+    &.dark {
+        background-color: $ws-char-coal;
+    }
+}
+</style>

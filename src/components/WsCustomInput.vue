@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" :class="{ dark }">
         <q-input
             class="input"
             :class="{ 'with-button': this.withButton }"
@@ -8,6 +8,8 @@
             :label="label"
             :rules="appendedRules"
             :value="value"
+            :dark="dark"
+            :color="dark ? 'ws-dark' : ''"
             @input="onInput"
             outlined
             square
@@ -56,6 +58,9 @@ export default class WsCustomInput extends Vue {
     @Prop({ default: false })
     dense!: boolean;
 
+    @Prop({ default: false })
+    dark!: boolean;
+
     get appendedRules() {
         // todo: localization
         const ruleRequired = (val: string) => !!val || 'Field is required';
@@ -77,10 +82,19 @@ export default class WsCustomInput extends Vue {
 </script>
 
 <style scoped lang="scss">
+@import 'src/styles/ws.variables';
+
 .container {
     display: flex;
+
     .input {
         flex-grow: 1;
+
+        ::v-deep .q-field__control {
+            &:before {
+                border: 2px solid $ws-lighter;
+            }
+        }
 
         .append-text {
             font-size: 0.8rem;
@@ -96,8 +110,24 @@ export default class WsCustomInput extends Vue {
         }
     }
 
+    &.dark {
+        .input {
+            ::v-deep .q-field__control {
+                &:before {
+                    border: 2px solid $ws-davys-gray;
+                }
+
+                background-color: $ws-medium-jungle-gray;
+
+                &:focus-within {
+                    background-color: $ws-char-coal;
+                }
+            }
+        }
+    }
+
     .button {
-        background-color: black;
+        background-color: $ws-davys-gray;
         color: white;
         border-radius: 0;
 

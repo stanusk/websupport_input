@@ -8,6 +8,14 @@
             <ws-email v-model="emailSingle" :required="false"></ws-email>
         </input-testing-container>
 
+        <input-testing-container title="Email: dark" :dark="true">
+            <ws-email
+                v-model="emailSingle"
+                :dark="true"
+                :required="false"
+            ></ws-email>
+        </input-testing-container>
+
         <input-testing-container title="Email: multiple | required">
             <ws-email v-model="emailMultiple" mode="multiple"></ws-email>
         </input-testing-container>
@@ -59,6 +67,8 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
+@import 'src/styles/ws.variables';
+
 #app {
     position: absolute;
     top: 0;
@@ -72,8 +82,12 @@ export default class App extends Vue {
     justify-content: space-around;
     align-items: center;
 
-    .container-component {
-        width: 300px;
+    .text-ws-dark {
+        color: $ws-emerald;
+    }
+
+    .bg-ws-dark {
+        background: $ws-emerald;
     }
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
     <ws-custom-input
         :autogrow="mode !== 'single'"
+        :dark="dark"
         :dense="dense"
         :label="label"
         :required="required"
@@ -26,6 +27,9 @@ export default class WsEmail extends Vue {
 
     @Prop({ default: false })
     dense!: boolean;
+
+    @Prop({ default: false })
+    dark!: boolean;
 
     @Emit('input')
     onInput(value: string) {
