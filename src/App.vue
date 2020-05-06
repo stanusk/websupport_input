@@ -1,48 +1,52 @@
 <template>
     <div id="app">
-        <input-testing-container title="Email: single | required">
-            <ws-email v-model="emailSingle"></ws-email>
-        </input-testing-container>
+        <div class="container-row">
+            <input-testing-container title="Email: single | required">
+                <ws-email v-model="emailSingle"></ws-email>
+            </input-testing-container>
 
-        <input-testing-container title="Email: single | optional">
-            <ws-email v-model="emailSingle" :required="false"></ws-email>
-        </input-testing-container>
+            <input-testing-container title="Email: single | optional">
+                <ws-email v-model="emailSingle" :required="false"></ws-email>
+            </input-testing-container>
 
-        <input-testing-container title="Email: dark" :dark="true">
-            <ws-email
-                v-model="emailSingle"
-                :dark="true"
-                :required="false"
-            ></ws-email>
-        </input-testing-container>
+            <input-testing-container title="Email: dark" :dark="true">
+                <ws-email
+                    v-model="emailSingle"
+                    :dark="true"
+                    :required="false"
+                ></ws-email>
+            </input-testing-container>
 
-        <input-testing-container title="Email: multiple | required">
-            <ws-email v-model="emailMultiple" mode="multiple"></ws-email>
-        </input-testing-container>
+            <input-testing-container title="Email: multiple | required">
+                <ws-email v-model="emailMultiple" mode="multiple"></ws-email>
+            </input-testing-container>
 
-        <input-testing-container title="Email: dense">
-            <ws-email v-model="emailSingle" :dense="true"></ws-email>
-        </input-testing-container>
+            <input-testing-container title="Email: dense">
+                <ws-email v-model="emailSingle" :dense="true"></ws-email>
+            </input-testing-container>
+        </div>
 
-        <input-testing-container
-            title="Coupon"
-            icon="local_activity"
-            color="blue"
-        >
-            <ws-coupon v-model="coupon" @add-coupon="addCoupon"></ws-coupon>
-        </input-testing-container>
+        <div class="container-row">
+            <input-testing-container
+                title="Coupon"
+                icon="local_activity"
+                color="blue"
+            >
+                <ws-coupon v-model="coupon" @add-coupon="addCoupon"></ws-coupon>
+            </input-testing-container>
 
-        <input-testing-container
-            title="Coupon: dense"
-            icon="local_activity"
-            color="blue"
-        >
-            <ws-coupon
-                v-model="coupon"
-                :dense="true"
-                @add-coupon="addCoupon"
-            ></ws-coupon>
-        </input-testing-container>
+            <input-testing-container
+                title="Coupon: dense"
+                icon="local_activity"
+                color="blue"
+            >
+                <ws-coupon
+                    v-model="coupon"
+                    :dense="true"
+                    @add-coupon="addCoupon"
+                ></ws-coupon>
+            </input-testing-container>
+        </div>
     </div>
 </template>
 
@@ -78,9 +82,16 @@ export default class App extends Vue {
     overflow: hidden;
 
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
+
+    .container-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
 
     .text-ws-dark {
         color: $ws-emerald;
