@@ -110,22 +110,6 @@ export default class WsCustomInput extends Vue {
         }
     }
 
-    &.dark {
-        .input {
-            ::v-deep .q-field__control {
-                &:before {
-                    border: 2px solid $ws-davys-gray;
-                }
-
-                background-color: $ws-medium-jungle-gray;
-
-                &:focus-within {
-                    background-color: $ws-char-coal;
-                }
-            }
-        }
-    }
-
     .button {
         background-color: $ws-davys-gray;
         color: white;
@@ -142,6 +126,27 @@ export default class WsCustomInput extends Vue {
 
         ::v-deep .q-btn__wrapper {
             padding: 0;
+        }
+    }
+
+    &.dark {
+        .input {
+            ::v-deep .q-field__control {
+                &:before {
+                    border: 2px solid $ws-davys-gray;
+                }
+
+                background-color: $ws-medium-jungle-gray;
+
+                &:focus-within {
+                    background-color: $ws-char-coal;
+                }
+            }
+        }
+
+        .button {
+            background-color: $ws-isabelline;
+            color: $ws-medium-jungle-gray;
         }
     }
 }

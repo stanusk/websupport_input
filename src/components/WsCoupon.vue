@@ -5,6 +5,7 @@
         :required="true"
         :value="value"
         :with-button="true"
+        :dark="dark"
         @button-click="addCoupon"
         @input="onInput"
     ></ws-custom-input>
@@ -21,6 +22,9 @@ export default class WsCoupon extends Vue {
 
     @Prop({ default: false })
     dense!: boolean;
+
+    @Prop({ default: false })
+    dark!: boolean;
 
     @Emit('input')
     onInput(value: string) {

@@ -46,6 +46,20 @@
                     @add-coupon="addCoupon"
                 ></ws-coupon>
             </input-testing-container>
+
+            <input-testing-container
+                :dark="true"
+                title="Coupon: dark"
+                icon="local_activity"
+                color="blue"
+            >
+                <ws-coupon
+                    v-model="coupon"
+                    :dense="true"
+                    :dark="true"
+                    @add-coupon="addCoupon"
+                ></ws-coupon>
+            </input-testing-container>
         </div>
     </div>
 </template>
