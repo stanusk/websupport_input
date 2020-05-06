@@ -1,22 +1,17 @@
 <template>
-    <div class="container">
-        <q-input
-            :value="value"
-            @input="onInput"
-            label="Insert coupon"
-            class="input"
-            outlined
-            square
-            no-error-icon
-        >
-        </q-input>
+    <ws-custom-input
+        :value="value"
+        @input="onInput"
+        label="Insert coupon"
+        :required="true"
+        :with-button="true"
+    >
         <q-btn size="lg" class="button" flat @click="addCoupon(value)">
             <template v-slot:default>
-                <!-- todo: solve without size -->
-                <q-icon name="add" size="56px" />
+                <q-icon class="icon" name="add" />
             </template>
         </q-btn>
-    </div>
+    </ws-custom-input>
 </template>
 
 <script lang="ts">
@@ -41,20 +36,21 @@ export default class WsCoupon extends Vue {
 </script>
 
 <style scoped lang="scss">
-.container {
-    display: flex;
-    .input {
-        flex-grow: 1;
-    }
-    /* todo: fix colors */
-    .button {
-        background-color: black;
-        color: white;
-        border-radius: 0;
+.button {
+    background-color: black;
+    color: white;
+    border-radius: 0;
 
-        ::v-deep .q-btn__wrapper {
-            padding: 0;
-        }
+    /* todo: make adaptive */
+    margin-bottom: 20px;
+
+    .icon {
+        /* todo: make adaptive */
+        font-size: 56px;
+    }
+
+    ::v-deep .q-btn__wrapper {
+        padding: 0;
     }
 }
 </style>

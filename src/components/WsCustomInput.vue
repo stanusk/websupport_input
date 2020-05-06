@@ -1,18 +1,23 @@
 <template>
-    <q-input
-        :value="value"
-        :rules="appendedRules"
-        @input="onInput"
-        :label="label"
-        :autogrow="autogrow"
-        outlined
-        square
-        no-error-icon
-    >
-        <template v-if="!required" v-slot:append>
-            <i class="append-text">(Optional)</i>
-        </template>
-    </q-input>
+    <div class="container">
+        <q-input
+            :value="value"
+            :rules="appendedRules"
+            @input="onInput"
+            :label="label"
+            :autogrow="autogrow"
+            class="input"
+            :class="{ 'with-button': this.withButton }"
+            outlined
+            square
+            no-error-icon
+        >
+            <template v-if="!required" v-slot:append>
+                <i class="append-text">(Optional)</i>
+            </template>
+        </q-input>
+        <slot></slot>
+    </div>
 </template>
 
 <script lang="ts">
@@ -35,6 +40,9 @@ export default class WsCustomInput extends Vue {
     @Prop({ default: () => [] })
     rules!: ((value: any) => true | string)[];
 
+    @Prop({ default: false })
+    withButton!: boolean;
+
     get appendedRules() {
         // todo: localization
         const ruleRequired = (val: string) => !!val || 'Field is required';
@@ -51,7 +59,23 @@ export default class WsCustomInput extends Vue {
 </script>
 
 <style scoped lang="scss">
-.append-text {
-    font-size: 0.8rem;
+.container {
+    display: flex;
+    .input {
+        flex-grow: 1;
+
+        .append-text {
+            font-size: 0.8rem;
+        }
+
+        &.with-button {
+            ::v-deep .q-field__control:before,
+            ::v-deep .q-field__control:after,
+            ::v-deep .q-field__control:hover:after,
+            ::v-deep .q-field__control:hover:before {
+                border-right: none;
+            }
+        }
+    }
 }
 </style>
