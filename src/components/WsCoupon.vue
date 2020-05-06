@@ -1,17 +1,12 @@
 <template>
     <ws-custom-input
+        :required="true"
         :value="value"
+        :with-button="true"
+        @button-click="addCoupon"
         @input="onInput"
         label="Insert coupon"
-        :required="true"
-        :with-button="true"
-    >
-        <q-btn size="lg" class="button" flat @click="addCoupon(value)">
-            <template v-slot:default>
-                <q-icon class="icon" name="add" />
-            </template>
-        </q-btn>
-    </ws-custom-input>
+    ></ws-custom-input>
 </template>
 
 <script lang="ts">
@@ -35,22 +30,4 @@ export default class WsCoupon extends Vue {
 }
 </script>
 
-<style scoped lang="scss">
-.button {
-    background-color: black;
-    color: white;
-    border-radius: 0;
-
-    /* todo: make adaptive */
-    margin-bottom: 20px;
-
-    .icon {
-        /* todo: make adaptive */
-        font-size: 56px;
-    }
-
-    ::v-deep .q-btn__wrapper {
-        padding: 0;
-    }
-}
-</style>
+<style scoped lang="scss"></style>

@@ -16,7 +16,17 @@
                 <i class="append-text">(Optional)</i>
             </template>
         </q-input>
-        <slot></slot>
+        <q-btn
+            v-if="withButton"
+            size="lg"
+            class="button"
+            flat
+            @click="onButtonClick(value)"
+        >
+            <template v-slot:default>
+                <q-icon class="icon" name="add" />
+            </template>
+        </q-btn>
     </div>
 </template>
 
@@ -55,6 +65,11 @@ export default class WsCustomInput extends Vue {
     onInput(value: string) {
         return value;
     }
+
+    @Emit('button-click')
+    onButtonClick(value: string) {
+        return value;
+    }
 }
 </script>
 
@@ -75,6 +90,24 @@ export default class WsCustomInput extends Vue {
             ::v-deep .q-field__control:hover:before {
                 border-right: none;
             }
+        }
+    }
+
+    .button {
+        background-color: black;
+        color: white;
+        border-radius: 0;
+
+        /* todo: make adaptive */
+        margin-bottom: 20px;
+
+        .icon {
+            /* todo: make adaptive */
+            font-size: 56px;
+        }
+
+        ::v-deep .q-btn__wrapper {
+            padding: 0;
         }
     }
 }
