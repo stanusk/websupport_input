@@ -1,11 +1,12 @@
 <template>
     <ws-custom-input
+        label="Insert coupon"
+        :dense="dense"
         :required="true"
         :value="value"
         :with-button="true"
         @button-click="addCoupon"
         @input="onInput"
-        label="Insert coupon"
     ></ws-custom-input>
 </template>
 
@@ -17,6 +18,9 @@ import WsCustomInput from '@/components/WsCustomInput.vue';
 export default class WsCoupon extends Vue {
     @Prop({ default: '' })
     value!: string;
+
+    @Prop({ default: false })
+    dense!: boolean;
 
     @Emit('input')
     onInput(value: string) {

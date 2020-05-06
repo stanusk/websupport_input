@@ -12,12 +12,28 @@
             <ws-email v-model="emailMultiple" mode="multiple"></ws-email>
         </input-testing-container>
 
+        <input-testing-container title="Email: dense">
+            <ws-email v-model="emailSingle" :dense="true"></ws-email>
+        </input-testing-container>
+
         <input-testing-container
             title="Coupon"
             icon="local_activity"
             color="blue"
         >
             <ws-coupon v-model="coupon" @add-coupon="addCoupon"></ws-coupon>
+        </input-testing-container>
+
+        <input-testing-container
+            title="Coupon: dense"
+            icon="local_activity"
+            color="blue"
+        >
+            <ws-coupon
+                v-model="coupon"
+                :dense="true"
+                @add-coupon="addCoupon"
+            ></ws-coupon>
         </input-testing-container>
     </div>
 </template>

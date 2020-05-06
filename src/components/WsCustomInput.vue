@@ -1,13 +1,14 @@
 <template>
     <div class="container">
         <q-input
-            :value="value"
-            :rules="appendedRules"
-            @input="onInput"
-            :label="label"
-            :autogrow="autogrow"
             class="input"
             :class="{ 'with-button': this.withButton }"
+            :autogrow="autogrow"
+            :dense="dense"
+            :label="label"
+            :rules="appendedRules"
+            :value="value"
+            @input="onInput"
             outlined
             square
             no-error-icon
@@ -18,13 +19,12 @@
         </q-input>
         <q-btn
             v-if="withButton"
-            size="lg"
             class="button"
             flat
             @click="onButtonClick(value)"
         >
             <template v-slot:default>
-                <q-icon class="icon" name="add" />
+                <q-icon class="icon" :class="{ dense }" name="add" />
             </template>
         </q-btn>
     </div>
@@ -52,6 +52,9 @@ export default class WsCustomInput extends Vue {
 
     @Prop({ default: false })
     withButton!: boolean;
+
+    @Prop({ default: false })
+    dense!: boolean;
 
     get appendedRules() {
         // todo: localization
@@ -98,12 +101,13 @@ export default class WsCustomInput extends Vue {
         color: white;
         border-radius: 0;
 
-        /* todo: make adaptive */
         margin-bottom: 20px;
 
         .icon {
-            /* todo: make adaptive */
             font-size: 56px;
+            &.dense {
+                font-size: 40px;
+            }
         }
 
         ::v-deep .q-btn__wrapper {
