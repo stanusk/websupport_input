@@ -11,6 +11,14 @@
         <input-testing-container title="Email: multiple | required">
             <ws-email v-model="emailMultiple" mode="multiple"></ws-email>
         </input-testing-container>
+
+        <input-testing-container
+            title="Coupon"
+            icon="local_activity"
+            color="blue"
+        >
+            <ws-coupon v-model="coupon" @add-coupon="addCoupon"></ws-coupon>
+        </input-testing-container>
     </div>
 </template>
 
@@ -18,13 +26,19 @@
 import { Component, Vue } from 'vue-property-decorator';
 import WsEmail from '@/components/WsEmail.vue';
 import InputTestingContainer from '@/components/InputTestingContainer.vue';
+import WsCoupon from '@/components/WsCoupon.vue';
 
 @Component({
-    components: { InputTestingContainer, WsEmail },
+    components: { InputTestingContainer, WsEmail, WsCoupon },
 })
 export default class App extends Vue {
     emailSingle = '';
     emailMultiple = '';
+    coupon = '';
+
+    addCoupon(coupon: string) {
+        console.log(coupon);
+    }
 }
 </script>
 
