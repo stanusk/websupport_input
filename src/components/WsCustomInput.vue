@@ -3,14 +3,13 @@
         <q-input
             class="input"
             :class="{ 'with-button': this.withButton }"
-            :autogrow="autogrow"
             :dense="dense"
-            :label="label"
             :rules="appendedRules"
             :value="value"
             :dark="dark"
             :color="dark ? 'ws-dark' : ''"
-            @input="onInput"
+            v-on="$listeners"
+            v-bind="$attrs"
             outlined
             square
             no-error-icon
@@ -40,12 +39,6 @@ export default class WsCustomInput extends Vue {
     @Prop({ default: '' })
     value!: string;
 
-    @Prop({ default: '' })
-    label!: string;
-
-    @Prop({ default: false })
-    autogrow!: boolean;
-
     @Prop({ default: false })
     required!: boolean;
 
@@ -67,11 +60,6 @@ export default class WsCustomInput extends Vue {
         // todo: make adding rules more user-friendly
         // todo: document adding rules
         return [...(this.required ? [ruleRequired] : []), ...this.rules];
-    }
-
-    @Emit('input')
-    onInput(value: string) {
-        return value;
     }
 
     @Emit('button-click')
