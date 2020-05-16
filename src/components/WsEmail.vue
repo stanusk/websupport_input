@@ -1,17 +1,15 @@
 <template>
     <ws-custom-input
         :autogrow="mode !== 'single'"
-        :dark="dark"
-        :dense="dense"
         :label="label"
         :required="required"
-        :value="value"
-        @input="onInput"
+        v-bind="$attrs"
+        v-on="$listeners"
     ></ws-custom-input>
 </template>
 
 <script lang="ts">
-import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import WsCustomInput from '@/components/WsCustomInput.vue';
 
 @Component({ components: { WsCustomInput } })
@@ -19,22 +17,8 @@ export default class WsEmail extends Vue {
     @Prop({ default: 'single' })
     mode!: 'single' | 'multiple';
 
-    @Prop({ default: '' })
-    value!: string;
-
     @Prop({ default: true })
     required!: boolean;
-
-    @Prop({ default: false })
-    dense!: boolean;
-
-    @Prop({ default: false })
-    dark!: boolean;
-
-    @Emit('input')
-    onInput(value: string) {
-        return value;
-    }
 
     get label() {
         const single = 'Email';
