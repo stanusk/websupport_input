@@ -100,11 +100,11 @@ export default class WsCustomInput extends Vue {
             font-size: 0.8rem;
         }
 
-        &.with-button {
-            ::v-deep .q-field__control:before,
-            ::v-deep .q-field__control:after,
-            ::v-deep .q-field__control:hover:after,
-            ::v-deep .q-field__control:hover:before {
+        &.with-button ::v-deep .q-field__control {
+            &:before,
+            &:after,
+            &:hover:after,
+            &:hover:before {
                 border-right: none;
             }
         }
