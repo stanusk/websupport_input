@@ -1,12 +1,12 @@
 <template>
     <div id="app">
         <div class="container-row">
-            <input-testing-container title="Email: single | required">
-                <ws-email v-model="emailSingle"></ws-email>
+            <input-testing-container title="Email: single">
+                <ws-email v-model="emailSingle" :required="false"></ws-email>
             </input-testing-container>
 
-            <input-testing-container title="Email: single | optional">
-                <ws-email v-model="emailSingle" :required="false"></ws-email>
+            <input-testing-container title="Email: single | required">
+                <ws-email v-model="emailSingle"></ws-email>
             </input-testing-container>
 
             <input-testing-container title="Email: dark" :dark="true">
@@ -17,12 +17,27 @@
                 ></ws-email>
             </input-testing-container>
 
-            <input-testing-container title="Email: multiple | required">
-                <ws-email v-model="emailMultiple" mode="multiple"></ws-email>
+            <input-testing-container
+                title="Email: dark | required"
+                :dark="true"
+            >
+                <ws-email v-model="emailSingle" :dark="true"></ws-email>
+            </input-testing-container>
+
+            <input-testing-container title="Email: multiple">
+                <ws-email
+                    v-model="emailMultiple"
+                    :required="false"
+                    mode="multiple"
+                ></ws-email>
             </input-testing-container>
 
             <input-testing-container title="Email: dense">
-                <ws-email v-model="emailSingle" :dense="true"></ws-email>
+                <ws-email
+                    v-model="emailSingle"
+                    :required="false"
+                    :dense="true"
+                ></ws-email>
             </input-testing-container>
         </div>
 
@@ -36,13 +51,13 @@
             </input-testing-container>
 
             <input-testing-container
-                title="Coupon: dense"
+                title="Coupon: required"
                 icon="local_activity"
                 color="blue"
             >
                 <ws-coupon
                     v-model="coupon"
-                    :dense="true"
+                    :required="true"
                     @add-coupon="addCoupon"
                 ></ws-coupon>
             </input-testing-container>
@@ -55,8 +70,48 @@
             >
                 <ws-coupon
                     v-model="coupon"
-                    :dense="true"
                     :dark="true"
+                    @add-coupon="addCoupon"
+                ></ws-coupon>
+            </input-testing-container>
+
+            <input-testing-container
+                :dark="true"
+                title="Coupon: dark | required"
+                icon="local_activity"
+                color="blue"
+            >
+                <ws-coupon
+                    v-model="coupon"
+                    :dark="true"
+                    :required="true"
+                    @add-coupon="addCoupon"
+                ></ws-coupon>
+            </input-testing-container>
+
+            <input-testing-container
+                :dark="true"
+                title="Coupon: dark | required | autogrow"
+                icon="local_activity"
+                color="blue"
+            >
+                <ws-coupon
+                    v-model="coupon"
+                    :autogrow="true"
+                    :dark="true"
+                    :required="true"
+                    @add-coupon="addCoupon"
+                ></ws-coupon>
+            </input-testing-container>
+
+            <input-testing-container
+                title="Coupon: dense"
+                icon="local_activity"
+                color="blue"
+            >
+                <ws-coupon
+                    v-model="coupon"
+                    :dense="true"
                     @add-coupon="addCoupon"
                 ></ws-coupon>
             </input-testing-container>
